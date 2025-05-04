@@ -33,33 +33,28 @@ public class GeneradorPez
         }
     }
     
-    public Pez pescar(int tirosRestantes, int nivel)
+    public Pez pescar(int nivel)
     {
-        while(tirosRestantes > 0)
+        /* Cargo Peces Segun Nivel Jugador */
+        cargarPeces(nivel);
+
+        /* Creo Probabilidad 0 - 100 */
+        int probabilidad = (int) (Math.random() * 100 + 1);
+        int sumaProb = 0; /* Acumulador De Probabilidades */
+
+        /* Recorro Array y Acumulo Probabilidades */
+        for(Pez pez : peces)
         {
-            /* Cargo Peces Segun Nivel Jugador */
-            cargarPeces(nivel);
+            sumaProb += pez.getProbabilidad();
 
-            /* Creo Probabilidad 0 - 100 */
-            int probabilidad = (int) (Math.random() * 100 + 1);
-            int sumaProb = 0; /* Acumulador De Probabilidades */
-            
-            // System.out.println("Salio: " + probabilidad);
-
-            /* Recorro Array y Acumulo Probabilidades */
-            for(Pez pez : peces)
+            /* Verifico Probabilidad Mas Alta y Retorno Pez */
+            if(probabilidad < sumaProb)
             {
-                sumaProb += pez.getProbabilidad();
-
-                /* Verifico Probabilidad Mas Alta y Retorno Pez */
-                if(probabilidad < sumaProb)
-                {
-                    return pez;
-                }
+                return pez;
             }
         }
         
-        /* Retorno Null por si Acaso */
+        /* Retorno Null por si Acaso xd */
         return null;
     }
 }

@@ -1,26 +1,57 @@
 package Codigo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador implements Serializable
 {
     /* Atributos */
     
     // Variables Jugador
-    private int dinero = 0, nivel = 1, tirosRestantes = 1, xp = 0;
-    
+    private int dinero = 0, nivel = 1, tirosRestantes = 1, xp = 0, cooldown = 3;
     // Contadores Peces
-    private int salmon = 0, bacalao = 0, propical = 0, pulpo = 0, pezOro = 0, pezEsmeralda = 0;
+    List<Pez> peces = new ArrayList<>();
+    private int bacalao = 0, salmon = 0, tropical = 0, pulpo = 0, pezOro = 0, pezEsmeralda = 0;
 
-    
+    /* Metodos */
+    public void addPeces(Pez pez) {
+        peces.add(pez);
+    }
+    public void clearPeces() {    
+        peces.clear();
+        bacalao = 0;
+        salmon = 0;
+        tropical = 0;
+        pulpo = 0;
+        pezOro = 0;
+        pezEsmeralda = 0;
+    }
     
     /* Getters y Setters */
+    public List<Pez> getInventario()
+    {
+        return peces;
+    }
     public int getDinero() {
         return dinero;
     }
     public void setDinero(int dinero) {
         this.dinero = dinero;
     }
+    public int getCooldown() {
+        return cooldown;
+    }
+    public void setCooldown(int cooldown) {
+        this.cooldown = cooldown;
+    }
+    public List<Pez> getPeces() {
+        return peces;
+    }
+    public void setPeces(List<Pez> peces) {
+        this.peces = peces;
+    }
+    
     public int getNivel() {
         return nivel;
     }
@@ -51,11 +82,11 @@ public class Jugador implements Serializable
     public void setBacalao(int bacalao) {
         this.bacalao = bacalao;
     }
-    public int getPropical() {
-        return propical;
+    public int getTropical() {
+        return tropical;
     }
-    public void setPropical(int propical) {
-        this.propical = propical;
+    public void setTropical(int tropical) {
+        this.tropical = tropical;
     }
     public int getPulpo() {
         return pulpo;
