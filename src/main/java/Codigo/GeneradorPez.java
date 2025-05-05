@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GeneradorPez
 {
-    ArrayList<Pez> peces;
+    ArrayList<PezBase> peces;
     
     private void cargarPeces(int nivel)
     {
@@ -17,23 +17,21 @@ public class GeneradorPez
             /* Orden Probabilidad Mayor a Menor */
             case 1 ->
             {
-                peces.add(new Pez("Bacalao", 10, 60, 10));
-                peces.add(new Pez("Salmon", 15, 30, 10));
-                peces.add(new Pez("Nada", 0, 10, 0));
+                peces.add(new Bacalao(60));
+                peces.add(new Salmon(30));
                 break;
             }
             case 2 ->
             {
-                peces.add(new Pez("Bacalao", 10, 50, 10));
-                peces.add(new Pez("Salmon", 15, 20, 10));
-                peces.add(new Pez("Pulpo", 15, 15, 10));
-                peces.add(new Pez("Nada", 0, 15, 0));
+                peces.add(new Bacalao(60));
+                peces.add(new Salmon(20));
+                peces.add(new Pulpo(10));
                 break;
             }
         }
     }
     
-    public Pez pescar(int nivel)
+    public PezBase pescar(int nivel)
     {
         /* Cargo Peces Segun Nivel Jugador */
         cargarPeces(nivel);
@@ -43,18 +41,18 @@ public class GeneradorPez
         int sumaProb = 0; /* Acumulador De Probabilidades */
 
         /* Recorro Array y Acumulo Probabilidades */
-        for(Pez pez : peces)
+        for(PezBase pez : peces)
         {
             sumaProb += pez.getProbabilidad();
 
-            /* Verifico Probabilidad Mas Alta y Retorno Pez */
+            /* Verifico Probabilidad Mas Alta y Retorno PezBase */
             if(probabilidad < sumaProb)
             {
                 return pez;
             }
         }
         
-        /* Retorno Null por si Acaso xd */
+        /* Retorno Null si no Suman 100% */
         return null;
     }
 }

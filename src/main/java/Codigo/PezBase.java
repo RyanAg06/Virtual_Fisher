@@ -1,31 +1,27 @@
 package Codigo;
 
-public class Pez
+import java.io.Serializable;
+
+public abstract class PezBase implements Serializable
 {
     /* Varibales */
     private String nombre;
     private int valor, probabilidad, xp;
 
     /* Constructor */
-    public Pez(String nombre, int valor, int probabilidad, int xp)
+    public PezBase(String nombre, int probabilidad)
     {
         this.nombre = nombre;
-        this.valor = valor;
         this.probabilidad = probabilidad;
-        this.xp = xp;
     }
 
     /* Getters */
     public String getNombre() {
         return nombre;
     }
-    public int getValor() {
-        return valor;
-    }
     public int getProbabilidad() {
         return probabilidad;
     }
-    public int getXp() {
-        return xp;
-    }
+    public abstract int getValor();
+    public abstract int getXp();
 }

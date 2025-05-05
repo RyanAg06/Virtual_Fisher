@@ -9,13 +9,13 @@ public class Jugador implements Serializable
     /* Atributos */
     
     // Variables Jugador
-    private int dinero = 0, nivel = 1, tirosRestantes = 1, xp = 0, cooldown = 3;
+    private int dinero = 0, nivel = 1, tirosRestantes = 1, xp = 0, xpLimite = 100, cooldown = 3;
     // Contadores Peces
-    List<Pez> peces = new ArrayList<>();
+    List<PezBase> peces = new ArrayList<>();
     private int bacalao = 0, salmon = 0, tropical = 0, pulpo = 0, pezOro = 0, pezEsmeralda = 0;
 
     /* Metodos */
-    public void addPeces(Pez pez) {
+    public void addPeces(PezBase pez) {
         peces.add(pez);
     }
     public void clearPeces() {    
@@ -27,9 +27,19 @@ public class Jugador implements Serializable
         pezOro = 0;
         pezEsmeralda = 0;
     }
+    public void subirNivel()
+    {
+        nivel++;
+        xpLimite = calcularLimite();
+        System.out.println("SUBES NIVEL " + nivel + "!!");
+    }
+    public int calcularLimite()
+    {
+        return (int)(xpLimite * Math.pow(1.2, nivel));
+    }
     
     /* Getters y Setters */
-    public List<Pez> getInventario()
+    public List<PezBase> getInventario()
     {
         return peces;
     }
@@ -45,10 +55,10 @@ public class Jugador implements Serializable
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
-    public List<Pez> getPeces() {
+    public List<PezBase> getPeces() {
         return peces;
     }
-    public void setPeces(List<Pez> peces) {
+    public void setPeces(List<PezBase> peces) {
         this.peces = peces;
     }
     
@@ -69,6 +79,9 @@ public class Jugador implements Serializable
     }
     public void setXp(int xp) {    
         this.xp = xp;
+    }
+    public int getXpLimite() {
+        return xpLimite;
     }
     public int getSalmon() {
         return salmon;
