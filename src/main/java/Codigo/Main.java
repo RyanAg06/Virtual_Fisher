@@ -10,7 +10,7 @@ public class Main
         Jugador jugador = new Jugador();            // Creo Jugador
         
         /* Cargar Datos Jugador */
-        File save = new File("C:\\Users\\Brian Aguero\\Desktop\\save.bin");
+        File save = new File("C:\\Users\\"+ System.getProperty("user.name") +"\\AppData\\Roaming\\virtual_fisher_save.bin");
         jugador = cargar(jugador, save);
         
         Scanner in = new Scanner(System.in);        // Creo Scanner
