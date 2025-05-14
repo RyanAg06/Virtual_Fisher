@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class GeneradorPez
 {
-    ArrayList<PezBase> peces;
+    ArrayList<Tesoros> tesoros;
     
     private void cargarPeces(int nivel)
     {
         /* Reinicio Array Cada que Tira */
-        peces = new ArrayList<>();
+        tesoros = new ArrayList<>();
         
         /* Selecciono Peces Segun el Nivel */
         switch(nivel)
@@ -17,21 +17,29 @@ public class GeneradorPez
             /* Orden Probabilidad Mayor a Menor */
             case 1 ->
             {
-                peces.add(new Bacalao(60));
-                peces.add(new Salmon(30));
+                tesoros.add(new Bacalao(60));
+                tesoros.add(new Salmon(30));
                 break;
             }
             case 2 ->
             {
-                peces.add(new Bacalao(60));
-                peces.add(new Salmon(20));
-                peces.add(new Pulpo(10));
+                tesoros.add(new Bacalao(60));
+                tesoros.add(new Salmon(20));
+                tesoros.add(new Tropical(10));
+                break;
+            }
+            case 3 ->
+            {
+                tesoros.add(new Bacalao(50));
+                tesoros.add(new Salmon(25));
+                tesoros.add(new Tropical(15));
+                tesoros.add(new Pulpo(10));
                 break;
             }
         }
     }
     
-    public PezBase pescar(int nivel)
+    public Tesoros pescar(int nivel)
     {
         /* Cargo Peces Segun Nivel Jugador */
         cargarPeces(nivel);
@@ -41,13 +49,14 @@ public class GeneradorPez
         int sumaProb = 0; /* Acumulador De Probabilidades */
 
         /* Recorro Array y Acumulo Probabilidades */
-        for(PezBase pez : peces)
+        for(Tesoros pez : tesoros)
         {
             sumaProb += pez.getProbabilidad();
 
-            /* Verifico Probabilidad Mas Alta y Retorno PezBase */
+            /* Verifico Probabilidad Mas Alta y Retorno Tesoros */
             if(probabilidad < sumaProb)
             {
+                System.out.print((pez.getProbabilidad()) + "% -> ");
                 return pez;
             }
         }
