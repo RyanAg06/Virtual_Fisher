@@ -1,6 +1,8 @@
 package Codigo;
 
-public abstract class Tesoros
+import java.io.Serializable;
+
+public abstract class Tesoros implements Serializable
 {
     protected String nombre;
     protected int valor, probabilidad, xp;
@@ -27,7 +29,7 @@ class Bacalao extends Tesoros
 {
     public Bacalao(int probabilidad) {
         super("Bacalao", probabilidad);
-        valor = 3;
+        valor = 10;
         xp = 5;
     }
 }
@@ -36,7 +38,7 @@ class Salmon extends Tesoros
 {
     public Salmon(int probabilidad) {
         super("Salmon", probabilidad);
-        valor = 5;
+        valor = 15;
         xp = 10;
     }
 }
@@ -45,7 +47,7 @@ class Tropical extends Tesoros
 {
     public Tropical(int probabilidad) {
         super("Tropical", probabilidad);
-        valor = 15;
+        valor = 35;
         xp = 25;
     }
 }
@@ -54,7 +56,7 @@ class Pulpo extends Tesoros
 {
     public Pulpo(int probabilidad) {
         super("Pulpo", probabilidad);
-        valor = 25;
+        valor = 50;
         xp = 50;
     }
 }

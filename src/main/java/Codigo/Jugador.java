@@ -6,14 +6,23 @@ import java.util.List;
 
 public class Jugador implements Serializable
 {
-    // Variables Jugador
+    /* Variables Jugador */
     private List<Tesoros> peces = new ArrayList<>();
     private List<Canas> canas = new ArrayList<>();
     private int dinero = 0, nivel = 1, xp = 0, xpLimite = 100, cooldown = 3, indexCana = 0;
     private int bacalao = 0, salmon = 0, tropical = 0, pulpo = 0;
+    
+    public Jugador()
+    {
+        /* Agrego Canas */
+        addCana(new CanaPlastico(true));
+        addCana(new CanaImprovisada(false));
+        addCana(new CanaHierro(false));
+        addCana(new CanaPesada(false));
+    }
 
     /* Metodos */
-    public void clearPeces() {    
+    public void clearPeces() {
         peces.clear();
         bacalao = 0;
         salmon = 0;
@@ -27,6 +36,39 @@ public class Jugador implements Serializable
     }
     public int calcularLimite() {
         return (int)(xpLimite * Math.pow(1.2, nivel));
+    }
+    public void mostrarEstadisticas()
+    {
+        /* Muestro Estadisticas */
+        System.out.println("------------------ ESTADISTICAS -----------------");
+        System.out.println("NIVEL: " + getNivel());
+        System.out.println("XP: " + getXp() + "/" + getXpLimite());
+        System.out.println("DINERO: " + getDinero() + "$" + "\n");
+        System.out.println("--- INVENTARIO ---");
+        System.out.println("BACALAOS: " + getBacalao());
+        System.out.println("SALMON: " + getSalmon());
+
+        /* Si Nivel es 2 Muestro Contador Tropical */
+        if(getNivel() >= 2)
+        {
+            System.out.println("TROPICAL: " + getTropical());
+        }
+
+        /* Si Nivel es 3 Muestro Contador Pulpo */
+        if(getNivel() >= 3)
+        {
+            System.out.println("PULPO: " + getPulpo() + "\n");
+        }
+
+        /* Recorro Inventario Canas y Muestro Obtenidos */
+        System.out.println("--- CANAS ---");
+        for(Canas cana : getCanas())
+        {
+            if(cana.getComprado())
+            {
+                System.out.println(cana.getNombre());
+            }
+        }
     }
     
     /* Getters y Setters */

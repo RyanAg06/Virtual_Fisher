@@ -1,6 +1,8 @@
 package Codigo;
 
-public abstract class Canas
+import java.io.Serializable;
+
+public abstract class Canas implements Serializable
 {
     protected String nombre;
     protected int tirosRestantes;
